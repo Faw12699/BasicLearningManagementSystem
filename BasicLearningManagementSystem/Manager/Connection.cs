@@ -35,5 +35,17 @@ namespace BasicLearningManagementSystem.Manager
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
         }
+
+        public static DataTable DataView(string query) 
+        {
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+
+            return dt;
+        }
     }
 }

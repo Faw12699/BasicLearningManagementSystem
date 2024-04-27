@@ -29,7 +29,7 @@ namespace BasicLearningManagementSystem.Controllers
             if (dr.Read())
             {
                 Connection.CloseConnection();
-                return View("Create");
+                return View("~/Views/Dashboard/Index.cshtml");
             }
             else 
             {
