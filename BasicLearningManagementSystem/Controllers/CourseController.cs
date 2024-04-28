@@ -24,7 +24,8 @@ namespace BasicLearningManagementSystem.Controllers
         {
             obj = new CourseManager();
             obj.AddCourse(course);
-            return View();
+
+            return RedirectToAction("ViewCourse");
         }
         public ActionResult ViewCourse() 
         {
@@ -32,5 +33,27 @@ namespace BasicLearningManagementSystem.Controllers
             List<Course> save = obj.ViewCourse();
             return View(save);
         }
+        public ActionResult DeleteCourse(int id)
+        {
+            obj = new CourseManager();
+            obj.DeleteCourse(id);
+
+            return RedirectToAction("ViewCourse");
+        }
+        [HttpGet]
+        public ActionResult EditCourse(int id)
+        {
+            obj = new CourseManager();
+            Course course = obj.GetCourse(id);
+            return View(course);
+        }
+        [HttpPost]
+        public ActionResult EditCourse(Course course)
+        {
+            obj = new CourseManager();
+            obj.UpdateCourse(course);
+            return RedirectToAction("ViewCourse");
+        }
+
     }
 }

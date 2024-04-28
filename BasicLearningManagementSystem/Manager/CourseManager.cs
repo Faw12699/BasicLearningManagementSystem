@@ -38,5 +38,43 @@ namespace BasicLearningManagementSystem.Manager
             Connection.CloseConnection();
             return data;
         }
+
+        public Course GetCourse(int id)
+        {
+            Course course = new Course();
+
+            Connection.OpenConnection();
+            DataTable dt = Connection.DataView("SELECT * FROM Course WHERE id= " + id + "");
+
+            course.id = int.Parse(dt.Rows[0][0].ToString());
+            course.name = dt.Rows[0][1].ToString();
+            course.crhrs = int.Parse(dt.Rows[0][2].ToString());
+            course.instructor = dt.Rows[0][3].ToString();
+
+            Connection.CloseConnection();
+
+            return course;
+        }
+
+        public void UpdateCourse(Course course)
+        {
+            Connection.OpenConnection();
+            Connection.ExecuteQueries("UPDATE Course SET name = '" + course.name + "', crhrs = " + course.crhrs + ", instructor = '" + course.instructor + "' WHERE id= " + course.id + "");
+            Connection.CloseConnection();
+        }
+
+        public void DeleteCourse(int id)
+        {
+            Connection.OpenConnection();
+            Connection.ExecuteQueries("DELETE FROM Course WHERE id= " + id + "");
+            Connection.CloseConnection();
+        }
+
+        public void Count()
+        {
+            Connection.OpenConnection();
+            Connection.ExecuteQueries("SELECT COUNT(*) FROM Course");
+            Connection.CloseConnection();
+        }
     }
 }

@@ -16,7 +16,6 @@ namespace BasicLearningManagementSystem.Manager
                                 VALUES('"+student.name+"', '"+student.email+"', '"+student.password+"', '"+student.gender+"', '"+student.phone+"', '"+student.city+"', '"+student.address+"')");
             Connection.CloseConnection();
         }
-
         public List<Student> ViewStudent()
         {
             Connection.OpenConnection();
@@ -39,6 +38,38 @@ namespace BasicLearningManagementSystem.Manager
             
             Connection.CloseConnection();
             return data;
+        }
+        public void DeleteStudent(int id)
+        {
+            Connection.OpenConnection();
+            Connection.ExecuteQueries("DELETE FROM Student WHERE id= " + id + "");
+            Connection.CloseConnection();
+        }
+        public Student GetStudent(int id)
+        {
+            Student student = new Student();
+
+            Connection.OpenConnection();
+            DataTable dt = Connection.DataView("SELECT * FROM Student WHERE id= " + id + "");
+
+            student.id = int.Parse(dt.Rows[0][0].ToString());
+            student.name = dt.Rows[0][1].ToString();
+            student.email = dt.Rows[0][2].ToString();
+            student.password = dt.Rows[0][3].ToString();
+            student.gender = dt.Rows[0][4].ToString();
+            student.phone = dt.Rows[0][5].ToString();
+            student.city = dt.Rows[0][6].ToString();
+            student.address = dt.Rows[0][7].ToString();
+
+            Connection.CloseConnection();
+            return student;
+        }
+        public void UpdateStudent(Student student)
+        {
+            Connection.OpenConnection();
+            Connection.ExecuteQueries(@"UPDATE Student
+                                   SET name = '" + student.name + "', email = '" + student.email + "', password = '" + student.password + "', gender = '" + student.gender + "', phone = '" + student.phone + "', city = '" + student.city + "', address = '" + student.address + "' WHERE id = " + student.id + "");
+            Connection.CloseConnection();
         }
     }
 }

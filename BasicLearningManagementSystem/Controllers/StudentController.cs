@@ -17,19 +17,39 @@ namespace BasicLearningManagementSystem.Controllers
             return View();
         }
 
+        StudentManager obj;
         [HttpPost]
         public ActionResult AddStudent(Student student) 
         {
-            StudentManager stdObj = new StudentManager();
-            stdObj.AddStudent(student);
+            obj = new StudentManager();
+            obj.AddStudent(student);
             return View();
         }
-
         public ActionResult ViewStudent() 
         {
-            StudentManager student = new StudentManager();
-            List<Student> save = student.ViewStudent();
+            obj = new StudentManager();
+            List<Student> save = obj.ViewStudent();
             return View(save);
+        }
+        public ActionResult DeleteStudent(int id)
+        {
+            obj = new StudentManager();
+            obj.DeleteStudent(id);
+            return RedirectToAction("ViewStudent");
+        }
+        [HttpGet]
+        public ActionResult EditStudent(int id)
+        {
+            obj = new StudentManager();
+            Student student = obj.GetStudent(id);
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult EditStudent(Student student)
+        {
+            obj = new StudentManager();
+            obj.UpdateStudent(student);
+            return RedirectToAction("ViewStudent");
         }
     }
 }
