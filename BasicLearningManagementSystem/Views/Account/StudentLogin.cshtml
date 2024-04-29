@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Login";
+﻿
+@{
+    ViewBag.Title = "StudentLogin";
     Layout = "~/Views/_LayoutPage1.cshtml";
 }
 
@@ -14,9 +15,9 @@
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
                     <h3 class="mb-4 text-center">Have an account?</h3>
-                    <form action="Verify" method="post" class="signin-form">
+                    <form action="StudentLogin" method="post" class="signin-form">
                         <div class="form-group">
-                            <input type="text" name="id" class="form-control" placeholder="Admin ID" required>
+                            <input type="text" name="id" class="form-control" placeholder="Student ID" required>
                         </div>
                         <div class="form-group">
                             <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" required>
@@ -40,7 +41,8 @@
                     </form>
                     <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
                     <div class="social d-flex text-center">
-                        <a href="~/Account/StudentLogin" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Login an a Student</a>
+                        <a href="~/Account/Login" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Login as an Admin</a>
+                        @*<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>*@
                     </div>
                 </div>
             </div>

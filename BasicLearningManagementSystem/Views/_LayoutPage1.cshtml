@@ -10,11 +10,18 @@
 
     <link rel="stylesheet" href="~/Assets/css/style.css">
 
+
+
     <title>@ViewBag.Title</title>
 </head>
-<body>
+<body class="img js-fullheight" style="background: url(/Assets/images/bg.jpg);">
     <div>
         @RenderBody()
     </div>
+
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/popper.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
 </body>
 </html>

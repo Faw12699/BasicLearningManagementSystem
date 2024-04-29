@@ -37,5 +37,30 @@ namespace BasicLearningManagementSystem.Controllers
                 return View("Error");
             }
         }
+        [HttpGet]
+        public ActionResult StudentLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult StudentLogin(Student student)
+        {
+            Connection.OpenConnection();
+            dr = Connection.DataReader("SELECT id, password FROM Student WHERE id= " + student.id + " AND password= '" + student.password + "' ");
+
+            if (dr.Read())
+            {
+                Connection.CloseConnection();
+                StudentManager obj = new StudentManager();
+                Student students = obj.GetStudent(student.id);
+                TempData["student"] = students;
+                return RedirectToAction("Index", "Register");
+            }
+            else
+            {
+                Connection.CloseConnection();
+                return View("Error");
+            }
+        }
     }
 }
